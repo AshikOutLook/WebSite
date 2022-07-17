@@ -1,0 +1,60 @@
+
+
+<html>
+  <head>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact_Style.css">
+  </head>
+  <body>
+ 
+    <div class="contact-box">
+      <form class="contact" name="contactus">
+        <p class="talk" align="center">Talk To us</p>
+        <br>
+        <input type="text" class="input-field" name="name" placeholder="Your Name">
+        <input type="email" class="input-field" name="email" placeholder="Your Email">
+        <input type="text" class="input-field" name="Subject" placeholder="Subject">
+        <textarea type="text" class="textarea-field" name="message" placeholder="Your message"></textarea>
+        <br>
+        <button type="button" class="btn"    onclick="reader()">Send Message</button>
+        <button type="button" onclick="reader()">Submit:)</button>
+      </form>
+    </div>
+
+    <script>
+      var name, email, message,Subject,Message;
+    
+    function reader() {
+      console.log("Func")
+      name = document.forms["contactus"]["name"].value;
+      email = document.forms["contactus"]["email"].value;
+      Subject = document.forms["contactus"]["Subject"].value;
+      message = document.forms["contactus"]["message"].value;
+      var flag = 1
+    let regex = /([a-zA-Z])$/;
+    if (regex.test(name) == false) {
+        flag = 0;
+    }
+
+    regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+    if (regex.test(email) == false) {
+        flag = 0;
+        console.log(flag)
+    }
+
+    if (flag == 1) {
+        Message = "%0AName : " + name + "%0AEmail : " + email + "%0ASubjcet : " + Subject + "%0AMessage : " + message;
+        var url = "https://api.telegram.org/bot5432823539:AAG-b7wRR6CFTrkjmwz_IBhSrNFemL0MykA/sendMessage?chat_id=1474950009&text=" + Message
+        var request = new XMLHttpRequest();
+        request.open("POST", url, false);
+        request.send(null);
+        window.location.href = "thankyou.html"
+    }
+}
+
+    </script>
+
+  
+
+  </body>
+</html>
